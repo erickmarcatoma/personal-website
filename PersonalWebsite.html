@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Erick — Software Engineer. Self-taught builder with grit, discipline, and day-one impact." />
-  <title>Erick Marcatoma | Software Engineer</title>
+  <title>Erick Marcatoma | Aspiring Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -404,6 +404,116 @@
       line-height: 1.5;
     }
 
+        /* Work */
+    .work-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .work-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .work-card:hover {
+      border-color: rgba(57, 255, 20, 0.3);
+      box-shadow: var(--glow-green);
+    }
+
+    .work-index {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: rgba(0, 240, 255, 0.15);
+      line-height: 1;
+      user-select: none;
+    }
+
+    .work-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.75rem 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .work-header h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .work-company {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--green);
+    }
+
+    .work-period {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    .work-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .work-highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .work-highlights li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .work-highlights li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+    }
+
+    .skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .skill-chip {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(57, 255, 20, 0.06);
+      border: 1px solid rgba(57, 255, 20, 0.2);
+      color: var(--green-dim);
+      transition: all var(--transition);
+    }
+
+    .skill-chip:hover {
+      border-color: var(--green);
+      color: var(--green);
+      box-shadow: var(--glow-green);
+    }
+    
     /* Timeline */
     #timeline { background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.02), transparent); }
 
@@ -527,116 +637,6 @@
       border: 1px solid var(--border);
       color: var(--cyan-dim);
       background: rgba(0, 240, 255, 0.04);
-    }
-
-    /* Work */
-    .work-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .work-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 1.5rem;
-      transition: border-color var(--transition), box-shadow var(--transition);
-    }
-
-    .work-card:hover {
-      border-color: rgba(57, 255, 20, 0.3);
-      box-shadow: var(--glow-green);
-    }
-
-    .work-index {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 800;
-      color: rgba(0, 240, 255, 0.15);
-      line-height: 1;
-      user-select: none;
-    }
-
-    .work-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 0.75rem 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .work-header h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-    }
-
-    .work-company {
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: var(--green);
-    }
-
-    .work-period {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-left: auto;
-    }
-
-    .work-desc {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-
-    .work-highlights {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .work-highlights li {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      padding-left: 1.2rem;
-      position: relative;
-    }
-
-    .work-highlights li::before {
-      content: "▸";
-      position: absolute;
-      left: 0;
-      color: var(--cyan);
-    }
-
-    .skills-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 2.5rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .skill-chip {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 0.4rem 0.85rem;
-      border-radius: 999px;
-      background: rgba(57, 255, 20, 0.06);
-      border: 1px solid rgba(57, 255, 20, 0.2);
-      color: var(--green-dim);
-      transition: all var(--transition);
-    }
-
-    .skill-chip:hover {
-      border-color: var(--green);
-      color: var(--green);
-      box-shadow: var(--glow-green);
     }
 
     /* Contact */
@@ -813,12 +813,12 @@
 
   <nav>
     <div class="nav-inner">
-      <a href="#hero" class="logo">ERICK MARCATOMA<span>.</span>DEV</a>
+      <a href="#hero" class="logo">ERICK<span>.</span>DEV</a>
       <button class="nav-toggle" aria-label="Toggle menu" id="navToggle">≡</button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
-        <li><a href="#timeline">Timeline</a></li>
         <li><a href="#work">Experience</a></li>
+        <li><a href="#timeline">Timeline</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -836,8 +836,8 @@
             <span class="line">Erick</span>
           </h1>
           <p class="hero-tagline">
-            Software engineer who ships under pressure.
-            <strong>Self-taught. Globally tested. Built to deliver from day one.</strong>
+            Developer who ships under pressure.
+            <strong>Independent Builder. Globally tested. Built to deliver from day one.</strong>
           </p>
           <div class="hero-cta">
             <a href="#work" class="btn btn-primary">View My Work →</a>
@@ -845,8 +845,8 @@
           </div>
           <div class="hero-stats">
             <div>
-              <div class="stat-value">3+</div>
-              <div class="stat-label">Years Building</div>
+              <div class="stat-value">2+</div>
+              <div class="stat-label">Projects Build</div>
             </div>
             <div>
               <div class="stat-value">2</div>
@@ -854,7 +854,7 @@
             </div>
             <div>
               <div class="stat-value">100%</div>
-              <div class="stat-label">Self-Taught Path</div>
+              <div class="stat-label">Independent Builder Path</div>
             </div>
           </div>
         </div>
@@ -871,21 +871,21 @@
         <div class="about-grid">
           <div class="about-text reveal">
             <p>
-              I'm Erick Marcatoma — a software engineer who didn't wait for permission to start building.
-              I taught myself to code while navigating one of the biggest transitions a person can make:
+              I'm Erick Marcatoma — an aspiring software engineer who didn't wait for permission to start building.
+              I educated myself to code while navigating one of the biggest transitions a person can make:
               <em>a major international relocation</em>. New country, new language, new network — and a
               career I chose to build from scratch.
             </p>
             <p>
-              Before tech, competitive sport(soccer) taught me what most bootcamps can't: how to perform when
+              Before tech, competitive sport(soccer) educated me what most bootcamps can't: how to perform when
               the stakes are high, how to recover from failure fast, and how discipline compounds over time.
               That mindset is why I learn quickly, debug relentlessly, and treat every problem like something
               I <em>will</em> solve.
             </p>
             <p>
-              Hiring managers don't need to wonder if I'll ramp up. I've already proven I can — in unfamiliar
-              environments, under real pressure, with no safety net. I bring problem-solving skills, technical
-              curiosity, and the readiness to make an impact from day one.
+              I've already shown that I can adapt quickly—in unfamiliar environments, under real pressure, 
+              and without a safety net. Those experiences strengthened my resilience, problem-solving skills, 
+              and technical curiosity. As an aspiring software engineer, I'm ready to keep learning, contribute to a team, and deliver value from day one.
             </p>
           </div>
           <div class="pillars reveal">
@@ -906,11 +906,97 @@
             <div class="pillar">
               <span class="pillar-icon">03</span>
               <div>
-                <h3>Self-Taught Builder</h3>
-                <p>No CS degree — just late nights, side projects, open source, and an obsession with getting better.</p>
+                <h3>Independent Builder</h3>
+                <p>Not a traditional path—just late nights, side projects, and an obsession with getting better.</p>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section id="work">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">// experience</p>
+          <h2 class="section-title">Work Experience</h2>
+        </div>
+        <div class="work-grid">
+          <article class="work-card reveal">
+            <div class="work-index">01</div>
+            <div>
+              <div class="work-header">
+                <h3>Software Engineering Fellow</h3>
+                <span class="work-company">Pursuit AI-Native Program / Incoming Fellow</span>
+                <span class="work-period">2026 — Present</span>
+              </div>
+              <p class="work-desc">
+                Developing full-stack software engineering skills through hands-on projects,
+                 collaboration, and modern development practices. Building applications while
+                 strengthening problem-solving, technical skills, and the ability to contribute to engineering teams.
+              </p>
+              <ul class="work-highlights">
+                <li>Hands-On Projects</li>
+                <li>Collaborative Development</li>
+                <li>Continuous Learning</li>
+                <li>Problem Solving</li>
+              </ul>
+            </div>
+          </article>
+          <article class="work-card reveal">
+            <div class="work-index">02</div>
+            <div>
+              <div class="work-header">
+                <h3>Featured Projects</h3>
+                <span class="work-company">Personal Projects</span>
+                <span class="work-period">2024 — Present</span>
+              </div>
+              <p class="work-desc">
+                Built an interactive game using JavaScript, HTML, 
+                and CSS. Implemented game logic, user interaction, and dynamic updates through the DOM.
+                Created a Python application focused on automation, logic, and data handling while practicing 
+                clean and reusable code.
+              </p>
+              <ul class="work-highlights">
+                <li>Game Logic</li>
+                <li>User Interaction</li>
+                <li>DOM Manipulation</li>
+                <li>Functions</li>
+                <li>Automation</li>
+              </ul>
+            </div>
+          </article>
+          <article class="work-card reveal">
+            <div class="work-index">03</div>
+            <div>
+              <div class="work-header">
+                <h3>Competitive Soccer Athlete</h3>
+                <span class="work-company">Personal Development Experience</span>
+                <span class="work-period">2017 — Present</span>
+              </div>
+              <p class="work-desc">
+                Competed in organized soccer, developing discipline, teamwork, consistency, and the ability
+                 to perform under pressure. The habits built through training and competition continue to influence
+                  the way I approach learning, problem-solving, and software development.
+              </p>
+              <ul class="work-highlights">
+                <li>Discipline</li>
+                <li>Teamwork</li>
+                <li>Goal Setting</li>
+                <li>Perform Under Presure</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        <div class="skills-row reveal">
+          <span class="skill-chip">JavaScript</span>
+          <span class="skill-chip">Discipline</span>
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">Git / GitHub</span>
+          <span class="skill-chip">Teamwork</span>
+          <span class="skill-chip">Goal Setting</span>
+          <span class="skill-chip">Continuous Learning</span>
         </div>
       </div>
     </section>
@@ -925,39 +1011,36 @@
         <div class="timeline-wrapper reveal">
           <div class="timeline-nav" role="tablist" aria-label="Career timeline">
             <button class="timeline-btn active" role="tab" aria-selected="true" data-target="tl-1">
-              <span class="year">2018</span>
-              <span class="label">Competitive Sport</span>
+              <span class="year">2015</span>
+              <span class="label">The Big Move</span>
             </button>
             <button class="timeline-btn" role="tab" aria-selected="false" data-target="tl-2">
-              <span class="year">2020</span>
-              <span class="label">The Big Move</span>
+              <span class="year">2017</span>
+              <span class="label">Competetive Sport</span>
             </button>
             <button class="timeline-btn" role="tab" aria-selected="false" data-target="tl-3">
               <span class="year">2021</span>
               <span class="label">First Lines of Code</span>
             </button>
             <button class="timeline-btn" role="tab" aria-selected="false" data-target="tl-4">
-              <span class="year">2022</span>
-              <span class="label">First Production App</span>
+              <span class="year">2023</span>
+              <span class="label">First Projects</span>
             </button>
             <button class="timeline-btn" role="tab" aria-selected="false" data-target="tl-5">
-              <span class="year">2023</span>
-              <span class="label">Professional Role</span>
-            </button>
-            <button class="timeline-btn" role="tab" aria-selected="false" data-target="tl-6">
-              <span class="year">2025</span>
-              <span class="label">Today</span>
+              <span class="year">2026</span>
+              <span class="label">Pursuit Program</span>
             </button>
           </div>
+
           <div class="timeline-panel" role="tabpanel">
-            <div class="timeline-content active" id="tl-1">
+            <div class="timeline-content active" id="tl-2">
               <h3>Peak Performance Mindset</h3>
               <p class="meta">Competitive Athletics · Foundation Years</p>
               <p>
-                Competed at a high level in organized sport, where every rep counted and every setback
-                had a deadline to overcome it. Learned structured training, goal-setting, and the ability
-                to stay calm when everything is on the line — skills that translate directly to production
-                incidents and tight sprint deadlines.
+                Competing in organized soccer taught me that success comes 
+                from consistency, discipline, and resilience. Every match required 
+                preparation, teamwork, and performing under pressure—qualities I now bring to 
+                learning software engineering and building real-world projects.
               </p>
               <div class="timeline-tags">
                 <span class="tag">Discipline</span>
@@ -965,14 +1048,15 @@
                 <span class="tag">Team Dynamics</span>
               </div>
             </div>
-            <div class="timeline-content" id="tl-2">
+
+            <div class="timeline-content" id="tl-1">
               <h3>International Relocation</h3>
               <p class="meta">New Country · Complete Reset</p>
               <p>
-                Made a life-changing move across borders — new culture, new language, new professional
-                landscape. No existing network, no fallback plan. Adapted fast, learned to communicate
-                under uncertainty, and developed the kind of resourcefulness that only comes from
-                rebuilding everything from scratch.
+                Made a life-changing move across borders into a new culture, 
+                language, and professional environment. Starting over taught me to 
+                adapt quickly, communicate through uncertainty, and build opportunities 
+                from scratch. Those experiences shaped the resilience and resourcefulness I now bring to every challenge.
               </p>
               <div class="timeline-tags">
                 <span class="tag">Adaptability</span>
@@ -980,14 +1064,16 @@
                 <span class="tag">Independence</span>
               </div>
             </div>
+
             <div class="timeline-content" id="tl-3">
               <h3>Self-Taught Developer</h3>
               <p class="meta">JavaScript · Python · Fundamentals</p>
               <p>
-                Started coding with free resources, documentation, and relentless practice. Built
-                small projects, broke things, fixed them, and repeated. No bootcamp shortcut — just
-                consistent effort, curiosity, and the same discipline I learned on the field applied
-                to a keyboard.
+                Started learning to code with free resources, documentation, 
+                and relentless practice. Built small projects, broke things, 
+                fixed them, and repeated. Every bug was a lesson, and every project 
+                sharpened my skills. The same discipline I developed on the soccer 
+                field now drives the way I learn and build software.
               </p>
               <div class="timeline-tags">
                 <span class="tag">JavaScript</span>
@@ -997,33 +1083,37 @@
               </div>
             </div>
             <div class="timeline-content" id="tl-4">
-              <h3>First Real-World Project</h3>
-              <p class="meta">Full-Stack Application · Users in Production</p>
+              <h3>First Coding Projects</h3>
+              <p class="meta">From Learning to Building · Code in Action</p>
               <p>
-                Shipped a full-stack application used by real users — handling auth, APIs, deployment,
-                and the unglamorous work of maintenance. Learned that building software is 20% writing
-                code and 80% thinking clearly about users, edge cases, and trade-offs.
+                Built projects using Python and JavaScript to strengthen my programming
+                 fundamentals and problem-solving skills. From designing program logic to 
+                 debugging unexpected issues, every project became an opportunity to learn. 
+                 Through consistent practice, I discovered that building software is as much about 
+                 patience, curiosity, and persistence as it is about writing code.
               </p>
               <div class="timeline-tags">
-                <span class="tag">React</span>
-                <span class="tag">Node.js</span>
-                <span class="tag">PostgreSQL</span>
-                <span class="tag">Deployment</span>
+                <span class="tag">HTML</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Python</span>
+                <span class="tag">GitHub</span>
               </div>
             </div>
             <div class="timeline-content" id="tl-5">
-              <h3>Professional Software Engineer</h3>
-              <p class="meta">Industry Role · Team Environment</p>
+              <h3>Pursuit Fellow</h3>
+              <p class="meta">Present · Software Engineering · AI Training</p>
               <p>
-                Joined a professional engineering team and contributed to production systems from week one.
-                Code reviews, agile workflows, on-call rotations — the full experience. Proved that a
-                self-taught background isn't a liability; it's evidence of initiative most candidates can't match.
+                Joined Pursuit's AI-Native Software Engineering program
+                 to deepen my technical skills through hands-on projects, 
+                 collaboration, and real-world software development practices. 
+                 Working alongside other aspiring engineers, I'm continuing to 
+                 strengthen my ability to build, learn, and contribute in a professional environment.
               </p>
               <div class="timeline-tags">
                 <span class="tag">Code Review</span>
-                <span class="tag">Agile</span>
-                <span class="tag">CI/CD</span>
-                <span class="tag">Collaboration</span>
+                <span class="tag">GitHub</span>
+                <span class="tag">Full-Stack</span>
+                <span class="tag">AI</span>
               </div>
             </div>
             <div class="timeline-content" id="tl-6">
@@ -1046,89 +1136,6 @@
       </div>
     </section>
 
-    <!-- Work Experience -->
-    <section id="work">
-      <div class="container">
-        <div class="reveal">
-          <p class="section-label">// experience</p>
-          <h2 class="section-title">Work Experience</h2>
-        </div>
-        <div class="work-grid">
-          <article class="work-card reveal">
-            <div class="work-index">01</div>
-            <div>
-              <div class="work-header">
-                <h3>Software Engineer</h3>
-                <span class="work-company">Tech Company</span>
-                <span class="work-period">2023 — Present</span>
-              </div>
-              <p class="work-desc">
-                Build and maintain production features across the stack. Collaborate with product and design
-                to ship user-facing improvements on aggressive timelines.
-              </p>
-              <ul class="work-highlights">
-                <li>Developed and deployed RESTful APIs serving thousands of daily requests with 99.9% uptime</li>
-                <li>Reduced page load time by 40% through targeted frontend optimization and lazy loading</li>
-                <li>Led migration of legacy module to modern React architecture with zero downtime</li>
-                <li>Mentored junior developers through code reviews and pair programming sessions</li>
-              </ul>
-            </div>
-          </article>
-          <article class="work-card reveal">
-            <div class="work-index">02</div>
-            <div>
-              <div class="work-header">
-                <h3>Full-Stack Developer</h3>
-                <span class="work-company">Freelance / Contract</span>
-                <span class="work-period">2021 — 2023</span>
-              </div>
-              <p class="work-desc">
-                Delivered end-to-end web applications for clients while completing the self-taught transition
-                into professional software development.
-              </p>
-              <ul class="work-highlights">
-                <li>Built and launched 4 client projects from requirements gathering through deployment</li>
-                <li>Designed database schemas and authentication flows for multi-tenant SaaS applications</li>
-                <li>Integrated third-party APIs (Stripe, SendGrid, OAuth providers) with robust error handling</li>
-                <li>Established CI/CD pipelines that cut deployment time from hours to minutes</li>
-              </ul>
-            </div>
-          </article>
-          <article class="work-card reveal">
-            <div class="work-index">03</div>
-            <div>
-              <div class="work-header">
-                <h3>Independent Projects</h3>
-                <span class="work-company">Personal / Open Source</span>
-                <span class="work-period">2020 — Present</span>
-              </div>
-              <p class="work-desc">
-                Continuous learning through side projects and open-source contributions — the engine behind
-                my self-taught journey.
-              </p>
-              <ul class="work-highlights">
-                <li>Created developer tools and automation scripts used by the local dev community</li>
-                <li>Contributed bug fixes and features to open-source libraries in the JS ecosystem</li>
-                <li>Built portfolio of projects demonstrating full-stack capability and clean code practices</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-        <div class="skills-row reveal">
-          <span class="skill-chip">JavaScript / TypeScript</span>
-          <span class="skill-chip">React</span>
-          <span class="skill-chip">Node.js</span>
-          <span class="skill-chip">Python</span>
-          <span class="skill-chip">PostgreSQL</span>
-          <span class="skill-chip">Git / GitHub</span>
-          <span class="skill-chip">REST APIs</span>
-          <span class="skill-chip">CI/CD</span>
-          <span class="skill-chip">Docker</span>
-          <span class="skill-chip">Agile / Scrum</span>
-        </div>
-      </div>
-    </section>
-
     <!-- Contact -->
     <section id="contact">
       <div class="container">
@@ -1140,14 +1147,15 @@
           <div class="contact-text reveal">
             <h3>Ready to make an <span>impact</span> on your team.</h3>
             <p>
-              I'm looking for teams that value builders — people who learn fast, ship reliably, and
-              bring more than just a résumé. Whether you're hiring or just want to talk tech, I'd
-              love to hear from you.
+              I'm looking for opportunities to contribute, keep learning,
+               and grow alongside a team that values curiosity, initiative,
+                and continuous improvement. Whether you're hiring or just want 
+                to talk tech, I'd love to connect.
             </p>
             <div class="contact-links">
               <a href="mailto:erick@example.com" class="contact-link">
                 <span class="icon">EMAIL</span>
-                erick@example.com
+                erick@pursuit.org
               </a>
               <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-link">
                 <span class="icon">GH</span>
