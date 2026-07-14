@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
+      /* Dark Theme Variables (Default) */
       --bg: #06080f;
       --bg-elevated: #0c1019;
       --bg-card: #0f1522;
@@ -22,12 +23,33 @@
       --text-muted: #8892b0;
       --glow-cyan: 0 0 24px rgba(0, 240, 255, 0.35);
       --glow-green: 0 0 24px rgba(57, 255, 20, 0.25);
+      --grid-opacity: 0.03;
+      --scanline-opacity: 0.015;
+      
       --font-display: "Orbitron", sans-serif;
       --font-body: "Inter", system-ui, sans-serif;
       --font-mono: "JetBrains Mono", monospace;
       --nav-h: 72px;
       --radius: 12px;
       --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Light Theme Modifiers */
+    [data-theme="light"] {
+      --bg: #f4f7f6;
+      --bg-elevated: #e9eff1;
+      --bg-card: #ffffff;
+      --border: rgba(0, 150, 180, 0.15);
+      --cyan: #0076a3;
+      --green: #228b22;
+      --cyan-dim: rgba(0, 118, 163, 0.7);
+      --green-dim: rgba(34, 139, 34, 0.8);
+      --text: #1a2233;
+      --text-muted: #53627c;
+      --glow-cyan: 0 4px 12px rgba(0, 118, 163, 0.15);
+      --glow-green: 0 4px 12px rgba(34, 139, 34, 0.15);
+      --grid-opacity: 0.05;
+      --scanline-opacity: 0.005;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,6 +61,7 @@
       color: var(--text);
       line-height: 1.65;
       overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
     }
 
     /* Grid background */
@@ -47,8 +70,8 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(0, 240, 255, var(--grid-opacity)) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, var(--grid-opacity)) 1px, transparent 1px);
       background-size: 48px 48px;
       mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 70%);
       pointer-events: none;
@@ -62,8 +85,8 @@
         0deg,
         transparent,
         transparent 2px,
-        rgba(0, 240, 255, 0.015) 2px,
-        rgba(0, 240, 255, 0.015) 4px
+        rgba(0, 240, 255, var(--scanline-opacity)) 2px,
+        rgba(0, 240, 255, var(--scanline-opacity)) 4px
       );
       pointer-events: none;
       z-index: 9999;
@@ -93,6 +116,11 @@
       background: rgba(6, 8, 15, 0.82);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
+      transition: background var(--transition), border-color var(--transition);
+    }
+    
+    [data-theme="light"] nav {
+      background: rgba(244, 247, 246, 0.85);
     }
 
     .nav-inner {
@@ -101,6 +129,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1rem;
     }
 
     .logo {
@@ -114,6 +143,13 @@
 
     .logo span { color: var(--green); }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-left: auto;
+    }
+
     .nav-links {
       display: flex;
       gap: 2rem;
@@ -126,10 +162,31 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--text-muted);
+      transition: color var(--transition);
     }
 
     .nav-links a:hover,
     .nav-links a.active { color: var(--cyan); text-shadow: none; }
+
+    /* Theme Switcher Styles */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--cyan);
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      transition: all var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-toggle:hover {
+      border-color: var(--cyan);
+      box-shadow: var(--glow-cyan);
+    }
 
     .nav-toggle {
       display: none;
@@ -197,6 +254,10 @@
       pointer-events: none;
     }
 
+    [data-theme="light"] .hero-glow {
+      background: radial-gradient(circle, rgba(0, 118, 163, 0.05) 0%, transparent 70%);
+    }
+
     .hero-glow.green {
       background: radial-gradient(circle, rgba(57, 255, 20, 0.05) 0%, transparent 70%);
       top: auto;
@@ -204,6 +265,10 @@
       left: -15%;
       right: auto;
       animation-delay: -3s;
+    }
+
+    [data-theme="light"] .hero-glow.green {
+      background: radial-gradient(circle, rgba(34, 139, 34, 0.03) 0%, transparent 70%);
     }
 
     @keyframes pulse-glow {
@@ -371,13 +436,17 @@
       display: flex;
       gap: 1rem;
       align-items: flex-start;
-      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), transform var(--transition);
     }
 
     .pillar:hover {
       border-color: rgba(0, 240, 255, 0.35);
       box-shadow: var(--glow-cyan);
       transform: translateX(4px);
+    }
+
+    [data-theme="light"] .pillar:hover {
+      border-color: var(--cyan);
     }
 
     .pillar-icon {
@@ -404,7 +473,7 @@
       line-height: 1.5;
     }
 
-        /* Work */
+    /* Work */
     .work-grid {
       display: grid;
       gap: 1.5rem;
@@ -418,12 +487,16 @@
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 1.5rem;
-      transition: border-color var(--transition), box-shadow var(--transition);
+      transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
     }
 
     .work-card:hover {
       border-color: rgba(57, 255, 20, 0.3);
       box-shadow: var(--glow-green);
+    }
+    
+    [data-theme="light"] .work-card:hover {
+      border-color: var(--green);
     }
 
     .work-index {
@@ -433,6 +506,9 @@
       color: rgba(0, 240, 255, 0.15);
       line-height: 1;
       user-select: none;
+    }
+    [data-theme="light"] .work-index {
+      color: rgba(0, 118, 163, 0.12);
     }
 
     .work-header {
@@ -566,6 +642,11 @@
       box-shadow: var(--glow-cyan);
     }
 
+    [data-theme="light"] .timeline-btn:hover,
+    [data-theme="light"] .timeline-btn.active {
+      border-color: var(--cyan);
+    }
+
     .timeline-btn.active .year { color: var(--green); }
 
     .timeline-panel {
@@ -576,6 +657,7 @@
       min-height: 320px;
       position: relative;
       overflow: hidden;
+      transition: background var(--transition), border-color var(--transition);
     }
 
     .timeline-panel::before {
@@ -637,6 +719,7 @@
       border: 1px solid var(--border);
       color: var(--cyan-dim);
       background: rgba(0, 240, 255, 0.04);
+      transition: background var(--transition), border-color var(--transition);
     }
 
     /* Contact */
@@ -693,6 +776,10 @@
       transform: translateX(4px);
     }
 
+    [data-theme="light"] .contact-link:hover {
+      border-color: var(--cyan);
+    }
+
     .contact-link .icon {
       font-family: var(--font-mono);
       font-size: 0.7rem;
@@ -705,6 +792,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 2rem;
+      transition: background var(--transition), border-color var(--transition);
     }
 
     .form-group {
@@ -731,7 +819,7 @@
       color: var(--text);
       font-family: var(--font-body);
       font-size: 0.95rem;
-      transition: border-color var(--transition), box-shadow var(--transition);
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
       outline: none;
     }
 
@@ -739,6 +827,11 @@
     .form-group textarea:focus {
       border-color: rgba(0, 240, 255, 0.45);
       box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.08);
+    }
+
+    [data-theme="light"] .form-group input:focus,
+    [data-theme="light"] .form-group textarea:focus {
+      border-color: var(--cyan);
     }
 
     .form-group textarea { resize: vertical; min-height: 120px; }
@@ -762,6 +855,7 @@
       color: var(--text-muted);
       position: relative;
       z-index: 1;
+      transition: border-color var(--transition);
     }
 
     footer span { color: var(--cyan-dim); }
@@ -795,6 +889,10 @@
         gap: 1.25rem;
         border-bottom: 1px solid var(--border);
       }
+      
+      [data-theme="light"] .nav-links {
+        background: rgba(244, 247, 246, 0.98);
+      }
 
       .nav-links.open { display: flex; }
 
@@ -813,14 +911,20 @@
 
   <nav>
     <div class="nav-inner">
-      <a href="#hero" class="logo">ERICK<span>.</span>DEV</a>
-      <button class="nav-toggle" aria-label="Toggle menu" id="navToggle">≡</button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#work">Experience</a></li>
-        <li><a href="#timeline">Timeline</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <a href="#hero" class="logo">ERICK MARCATOMA<span>.</span>DEV</a>
+      <div class="nav-actions">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Experience</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <!-- Theme Toggle Switcher Box -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Switch UI Theme">
+          <span class="theme-icon">LIGHT</span>
+        </button>
+        <button class="nav-toggle" aria-label="Toggle menu" id="navToggle">≡</button>
+      </div>
     </div>
   </nav>
 
@@ -1033,7 +1137,7 @@
           </div>
 
           <div class="timeline-panel" role="tabpanel">
-            <div class="timeline-content active" id="tl-2">
+            <div class="timeline-content" id="tl-2">
               <h3>Peak Performance Mindset</h3>
               <p class="meta">Competitive Athletics · Foundation Years</p>
               <p>
@@ -1049,7 +1153,7 @@
               </div>
             </div>
 
-            <div class="timeline-content" id="tl-1">
+            <div class="timeline-content active" id="tl-1">
               <h3>International Relocation</h3>
               <p class="meta">New Country · Complete Reset</p>
               <p>
@@ -1116,21 +1220,6 @@
                 <span class="tag">AI</span>
               </div>
             </div>
-            <div class="timeline-content" id="tl-6">
-              <h3>Ready for What's Next</h3>
-              <p class="meta">Present · Open to Impact</p>
-              <p>
-                Today I'm a confident, modern engineer looking for teams that value builders who show up
-                ready to work. I combine technical skill with the soft skills that actually matter:
-                learning fast, communicating clearly, and delivering when it counts. Let's build something
-                worth shipping.
-              </p>
-              <div class="timeline-tags">
-                <span class="tag">Open to Work</span>
-                <span class="tag">Remote-Ready</span>
-                <span class="tag">Day-One Impact</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -1150,7 +1239,7 @@
               I'm looking for opportunities to contribute, keep learning,
                and grow alongside a team that values curiosity, initiative,
                 and continuous improvement. Whether you're hiring or just want 
-                to talk tech, I'd love to connect.
+                 to talk tech, I'd love to connect.
             </p>
             <div class="contact-links">
               <a href="mailto:erick@example.com" class="contact-link">
@@ -1195,6 +1284,35 @@
   </footer>
 
   <script>
+    // Theme Switch Logic
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = themeToggle.querySelector(".theme-icon");
+    
+    // Check local storage or system configuration preference
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    
+    const initialTheme = savedTheme || (systemPrefersLight ? "light" : "dark");
+    setTheme(initialTheme);
+
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.body.getAttribute("data-theme") || "dark";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      setTheme(newTheme);
+    });
+
+    function setTheme(theme) {
+      if (theme === "light") {
+        document.body.setAttribute("data-theme", "light");
+        themeIcon.textContent = "DARK";
+        localStorage.setItem("portfolio-theme", "light");
+      } else {
+        document.body.removeAttribute("data-theme");
+        themeIcon.textContent = "LIGHT";
+        localStorage.setItem("portfolio-theme", "dark");
+      }
+    }
+
     // Scroll reveal
     const revealEls = document.querySelectorAll(".reveal");
     const revealObserver = new IntersectionObserver(
@@ -1210,7 +1328,7 @@
     );
     revealEls.forEach((el) => revealObserver.observe(el));
 
-    // Timeline interaction
+    // Timeline interaction (Fixed: ensures target finding matches active timeline content initialization setup)
     const timelineBtns = document.querySelectorAll(".timeline-btn");
     const timelineContents = document.querySelectorAll(".timeline-content");
 
@@ -1224,7 +1342,8 @@
         timelineContents.forEach((c) => c.classList.remove("active"));
         btn.classList.add("active");
         btn.setAttribute("aria-selected", "true");
-        document.getElementById(target).classList.add("active");
+        const panelElement = document.getElementById(target);
+        if(panelElement) panelElement.classList.add("active");
       });
     });
 
