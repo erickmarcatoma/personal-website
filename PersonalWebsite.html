@@ -162,11 +162,11 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--text-muted);
-      transition: color var(--transition);
+      transition: color var(--transition), text-shadow var(--transition);
     }
 
     .nav-links a:hover,
-    .nav-links a.active { color: var(--cyan); text-shadow: none; }
+    .nav-links a.active { color: var(--cyan); text-shadow: var(--glow-cyan); }
 
     /* Theme Switcher Styles */
     .theme-toggle {
@@ -233,7 +233,25 @@
       transform: translateY(0);
     }
 
-    /* Hero */
+    /* Hero Layout Styles */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-image img {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    /* Hero Background & Glow Elements */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -846,22 +864,11 @@
 
     .form-success.show { display: block; }
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 0;
-      text-align: center;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      position: relative;
-      z-index: 1;
-      transition: border-color var(--transition);
-    }
-
-    footer span { color: var(--cyan-dim); }
-
-    /* Responsive */
+    /* Responsive Styles */
     @media (max-width: 900px) {
+      .hero-layout { grid-template-columns: 1fr; }
+      .hero-image { display: none; }
+      
       .about-grid,
       .timeline-wrapper,
       .contact-grid { grid-template-columns: 1fr; }
@@ -911,7 +918,7 @@
 
   <nav>
     <div class="nav-inner">
-      <a href="#hero" class="logo">ERICK MARCATOMA<span>.</span>DEV</a>
+      <a href="#hero" class="logo">ERICK M<span>.</span>DEV</a>
       <div class="nav-actions">
         <ul class="nav-links" id="navLinks">
           <li><a href="#about">About</a></li>
@@ -934,32 +941,37 @@
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-glow green" aria-hidden="true"></div>
       <div class="container">
-        <div class="reveal">
-          <div class="hero-status">Available for opportunities</div>
-          <h1 class="hero-name">
-            <span class="line">Erick</span>
-          </h1>
-          <p class="hero-tagline">
-            Developer who ships under pressure.
-            <strong>Independent Builder. Globally tested. Built to deliver from day one.</strong>
-          </p>
-          <div class="hero-cta">
-            <a href="#work" class="btn btn-primary">View My Work →</a>
-            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        <div class="hero-layout">
+          <div class="reveal">
+            <div class="hero-status">Available for opportunities</div>
+            <h1 class="hero-name">
+              <span class="line">Erick Marcatoma</span>
+            </h1>
+            <p class="hero-tagline">
+              Developer who ships under pressure.
+              <strong>Independent Builder. Globally tested. Built to deliver from day one.</strong>
+            </p>
+            <div class="hero-cta">
+              <a href="#work" class="btn btn-primary">View My Work →</a>
+              <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+            </div>
+            <div class="hero-stats">
+              <div>
+                <div class="stat-value">2+</div>
+                <div class="stat-label">Projects Built</div>
+              </div>
+              <div>
+                <div class="stat-value">2</div>
+                <div class="stat-label">Countries Lived</div>
+              </div>
+              <div>
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Independent Builder Path</div>
+              </div>
+            </div>
           </div>
-          <div class="hero-stats">
-            <div>
-              <div class="stat-value">2+</div>
-              <div class="stat-label">Projects Build</div>
-            </div>
-            <div>
-              <div class="stat-value">2</div>
-              <div class="stat-label">Countries Lived</div>
-            </div>
-            <div>
-              <div class="stat-value">100%</div>
-              <div class="stat-label">Independent Builder Path</div>
-            </div>
+          <div class="hero-image reveal">
+            <img src="shelby-2021.jpg" alt="Erick Marcatoma" />
           </div>
         </div>
       </div>
@@ -981,7 +993,7 @@
               career I chose to build from scratch.
             </p>
             <p>
-              Before tech, competitive sport(soccer) educated me what most bootcamps can't: how to perform when
+              Before tech, competitive sport (soccer) educated me what most bootcamps can't: how to perform when
               the stakes are high, how to recover from failure fast, and how discipline compounds over time.
               That mindset is why I learn quickly, debug relentlessly, and treat every problem like something
               I <em>will</em> solve.
@@ -1088,7 +1100,7 @@
                 <li>Discipline</li>
                 <li>Teamwork</li>
                 <li>Goal Setting</li>
-                <li>Perform Under Presure</li>
+                <li>Perform Under Pressure</li>
               </ul>
             </div>
           </article>
@@ -1120,7 +1132,7 @@
             </button>
             <button class="timeline-btn" role="tab" aria-selected="false" data-target="tl-2">
               <span class="year">2017</span>
-              <span class="label">Competetive Sport</span>
+              <span class="label">Competitive Sport</span>
             </button>
             <button class="timeline-btn" role="tab" aria-selected="false" data-target="tl-3">
               <span class="year">2021</span>
@@ -1137,22 +1149,6 @@
           </div>
 
           <div class="timeline-panel" role="tabpanel">
-            <div class="timeline-content" id="tl-2">
-              <h3>Peak Performance Mindset</h3>
-              <p class="meta">Competitive Athletics · Foundation Years</p>
-              <p>
-                Competing in organized soccer taught me that success comes 
-                from consistency, discipline, and resilience. Every match required 
-                preparation, teamwork, and performing under pressure—qualities I now bring to 
-                learning software engineering and building real-world projects.
-              </p>
-              <div class="timeline-tags">
-                <span class="tag">Discipline</span>
-                <span class="tag">Resilience</span>
-                <span class="tag">Team Dynamics</span>
-              </div>
-            </div>
-
             <div class="timeline-content active" id="tl-1">
               <h3>International Relocation</h3>
               <p class="meta">New Country · Complete Reset</p>
@@ -1166,6 +1162,22 @@
                 <span class="tag">Adaptability</span>
                 <span class="tag">Cross-Cultural</span>
                 <span class="tag">Independence</span>
+              </div>
+            </div>
+
+            <div class="timeline-content" id="tl-2">
+              <h3>Peak Performance Mindset</h3>
+              <p class="meta">Competitive Athletics · Foundation Years</p>
+              <p>
+                Competing in organized soccer taught me that success comes 
+                from consistency, discipline, and resilience. Every match required 
+                preparation, teamwork, and performing under pressure—qualities I now bring to 
+                learning software engineering and building real-world projects.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag">Discipline</span>
+                <span class="tag">Resilience</span>
+                <span class="tag">Team Dynamics</span>
               </div>
             </div>
 
@@ -1186,6 +1198,7 @@
                 <span class="tag">Problem Solving</span>
               </div>
             </div>
+
             <div class="timeline-content" id="tl-4">
               <h3>First Coding Projects</h3>
               <p class="meta">From Learning to Building · Code in Action</p>
@@ -1203,6 +1216,7 @@
                 <span class="tag">GitHub</span>
               </div>
             </div>
+
             <div class="timeline-content" id="tl-5">
               <h3>Pursuit Fellow</h3>
               <p class="meta">Present · Software Engineering · AI Training</p>
@@ -1242,7 +1256,7 @@
                  to talk tech, I'd love to connect.
             </p>
             <div class="contact-links">
-              <a href="mailto:erick@example.com" class="contact-link">
+              <a href="mailto:erick@pursuit.org" class="contact-link">
                 <span class="icon">EMAIL</span>
                 erick@pursuit.org
               </a>
@@ -1288,7 +1302,6 @@
     const themeToggle = document.getElementById("themeToggle");
     const themeIcon = themeToggle.querySelector(".theme-icon");
     
-    // Check local storage or system configuration preference
     const savedTheme = localStorage.getItem("portfolio-theme");
     const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
     
@@ -1328,7 +1341,7 @@
     );
     revealEls.forEach((el) => revealObserver.observe(el));
 
-    // Timeline interaction (Fixed: ensures target finding matches active timeline content initialization setup)
+    // Timeline interaction
     const timelineBtns = document.querySelectorAll(".timeline-btn");
     const timelineContents = document.querySelectorAll(".timeline-content");
 
@@ -1347,7 +1360,7 @@
       });
     });
 
-    // Active nav link on scroll
+    // Active nav link on scroll (Updated Configuration Engine)
     const sections = document.querySelectorAll("section[id]");
     const navAnchors = document.querySelectorAll(".nav-links a");
 
@@ -1361,7 +1374,7 @@
           }
         });
       },
-      { threshold: 0.35, rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav-h"))}px 0px -45% 0px` }
+      { threshold: 0.1, rootMargin: "-72px 0px -40% 0px" }
     );
     sections.forEach((s) => navObserver.observe(s));
 
