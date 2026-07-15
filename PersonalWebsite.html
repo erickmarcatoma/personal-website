@@ -864,6 +864,13 @@
 
     .form-success.show { display: block; }
 
+    /* Typewriter Cursor Styles */
+    .cursor {
+      color: var(--cyan);
+      animation: blink 0.8s infinite;
+      font-weight: 300;
+    }
+
     /* Responsive Styles */
     @media (max-width: 900px) {
       .hero-layout { grid-template-columns: 1fr; }
@@ -918,7 +925,7 @@
 
   <nav>
     <div class="nav-inner">
-      <a href="#hero" class="logo">ERICK M<span>.</span>DEV</a>
+      <a href="#hero" class="logo">ERICK MARCATOMA<span>.</span>DEV</a>
       <div class="nav-actions">
         <ul class="nav-links" id="navLinks">
           <li><a href="#about">About</a></li>
@@ -945,11 +952,11 @@
           <div class="reveal">
             <div class="hero-status">Available for opportunities</div>
             <h1 class="hero-name">
-              <span class="line">Erick Marcatoma</span>
+              <span class="line">Erick M</span>
             </h1>
             <p class="hero-tagline">
-              Developer who ships under pressure.
-              <strong>Independent Builder. Globally tested. Built to deliver from day one.</strong>
+              Not there yet — but building every day.
+              <strong>Discipline, curiosity, and zero excuses.</strong>
             </p>
             <div class="hero-cta">
               <a href="#work" class="btn btn-primary">View My Work →</a>
@@ -957,8 +964,8 @@
             </div>
             <div class="hero-stats">
               <div>
-                <div class="stat-value">2+</div>
-                <div class="stat-label">Projects Built</div>
+                <div class="stat-value">1 Year</div>
+                <div class="stat-label">Coding Journey</div>
               </div>
               <div>
                 <div class="stat-value">2</div>
@@ -1256,17 +1263,17 @@
                  to talk tech, I'd love to connect.
             </p>
             <div class="contact-links">
-              <a href="mailto:erick@pursuit.org" class="contact-link">
+              <a href="mailto:your.email@example.com" class="contact-link">
                 <span class="icon">EMAIL</span>
                 erick@pursuit.org
               </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="contact-link">
                 <span class="icon">GH</span>
-                github.com/erick
+                github.com/yourusername
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="contact-link">
                 <span class="icon">IN</span>
-                linkedin.com/in/erick
+                linkedin.com/in/yourusername
               </a>
             </div>
           </div>
@@ -1360,7 +1367,7 @@
       });
     });
 
-    // Active nav link on scroll (Updated Configuration Engine)
+    // Active nav link on scroll
     const sections = document.querySelectorAll("section[id]");
     const navAnchors = document.querySelectorAll(".nav-links a");
 
@@ -1396,6 +1403,71 @@
 
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Typewriter Subsystem Initialization Logic
+    const typingText = "Not there yet — but building every day.";
+    const typingElement = document.querySelector(".hero-tagline");
+    const staticPart = document.querySelector(".hero-tagline strong");
+
+    const strongHTML = `<strong>Discipline, curiosity, and zero excuses.</strong>`;
+
+    let i = 0;
+    typingElement.innerHTML = '<span id="typed"></span><span class="cursor">|</span>' + staticPart.outerHTML;
+    typingElement.innerHTML = '<span id="typed"></span><span class="cursor">|</span><br>' + strongHTML;
+
+    function typeWriter() {
+      if (i < typingText.length) {
+        document.getElementById("typed").textContent += typingText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 55);
+      } else {
+        document.querySelector(".cursor").style.display = "none";
+      }
+    }
+
+    typeWriter();
+
+    // Mouse Trail Effect
+    const trail = [];
+    const trailLength = 6;
+
+    for (let i = 0; i < trailLength; i++) {
+      const dot = document.createElement("div");
+      dot.style.cssText = `
+        position: fixed;
+        width: ${8 - i * 0.5}px;
+        height: ${8 - i * 0.5}px;
+        border-radius: 50%;
+        background: var(--cyan);
+        pointer-events: none;
+        z-index: 9998;
+        opacity: ${1 - i / trailLength};
+        transition: transform 0.1s ease;
+      `;
+      document.body.appendChild(dot);
+      trail.push({ el: dot, x: 0, y: 0 });
+    }
+
+    let mouseX = 0, mouseY = 0;
+
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateTrail() {
+      let x = mouseX, y = mouseY;
+      trail.forEach((dot, i) => {
+        const prev = trail[i - 1] || { x: mouseX, y: mouseY };
+        dot.x += (prev.x - dot.x) * 0.35;
+        dot.y += (prev.y - dot.y) * 0.35;
+        dot.el.style.left = dot.x - 4 + "px";
+        dot.el.style.top = dot.y - 4 + "px";
+      });
+      requestAnimationFrame(animateTrail);
+    }
+
+    animateTrail();
   </script>
 </body>
 </html>
