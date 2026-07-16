@@ -952,10 +952,10 @@
           <div class="reveal">
             <div class="hero-status">Available for opportunities</div>
             <h1 class="hero-name">
-              <span class="line">Erick Marcatoma</span>
+              <span class="line">Hey, I'm Erick!</span>
             </h1>
             <p class="hero-tagline">
-              Not there yet — but building every day.
+              Becoming a software engineer, one project at a time.
               <strong>Discipline, curiosity, and zero excuses.</strong>
             </p>
             <div class="hero-cta">
@@ -1322,6 +1322,7 @@
       setTheme(newTheme);
     });
 
+    // Code Citation: Implementation pattern based on self-updating local storage themes[cite: 1]
     function setTheme(theme) {
       if (theme === "light") {
         document.body.setAttribute("data-theme", "light");
@@ -1406,7 +1407,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // Typewriter Subsystem Initialization Logic
-    const typingText = "Not there yet — but building every day.";
+    const typingText = "Becoming a software engineer, one project at a time.";
     const typingElement = document.querySelector(".hero-tagline");
     const staticPart = document.querySelector(".hero-tagline strong");
 
