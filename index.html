@@ -53,7 +53,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); overflow-x: hidden; }
 
     body {
       font-family: var(--font-body);
@@ -61,6 +61,7 @@
       color: var(--text);
       line-height: 1.65;
       overflow-x: hidden;
+      width: 100%;
       transition: background var(--transition), color var(--transition);
     }
 
@@ -200,7 +201,7 @@
     }
 
     /* Sections */
-    section { padding: 6rem 0; }
+    section { padding: 6rem 0; width: 100%; overflow: hidden; }
 
     .section-label {
       font-family: var(--font-mono);
@@ -262,8 +263,8 @@
 
     .hero-glow {
       position: absolute;
-      width: 600px;
-      height: 600px;
+      width: min(600px, 90vw);
+      height: min(600px, 90vw);
       border-radius: 50%;
       background: radial-gradient(circle, rgba(0, 240, 255, 0.08) 0%, transparent 70%);
       top: 10%;
@@ -343,7 +344,7 @@
     .hero-tagline {
       font-size: clamp(1.05rem, 2.5vw, 1.35rem);
       color: var(--text-muted);
-      max-width: 540px;
+      max-width: min(540px, 100%);
       margin-bottom: 2rem;
     }
 
@@ -873,50 +874,77 @@
 
     /* Responsive Styles */
     @media (max-width: 900px) {
-      .hero-layout { grid-template-columns: 1fr; }
-      .hero-image { display: none; }
+      .hero-layout { 
+        grid-template-columns: 1fr; 
+        gap: 1.5rem;
+      }
+      .hero-image { display: none; } /*[cite: 1] */
       
       .about-grid,
       .timeline-wrapper,
-      .contact-grid { grid-template-columns: 1fr; }
-
-      .timeline-nav {
-        position: static;
-        flex-direction: row;
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
+      .contact-grid { 
+        grid-template-columns: 1fr; 
+        gap: 1.75rem;
       }
 
-      .timeline-btn { min-width: 160px; flex-shrink: 0; }
+      #hero {
+        min-height: auto;
+        padding-top: calc(var(--nav-h) + 2rem);
+        padding-bottom: 3rem;
+      }
 
-      .work-period { margin-left: 0; width: 100%; }
+      .timeline-nav {
+        position: static; /*[cite: 1] */
+        flex-direction: row; /*[cite: 1] */
+        overflow-x: auto; /*[cite: 1] */
+        padding-bottom: 0.5rem; /*[cite: 1] */
+        gap: 0.75rem;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .timeline-btn { min-width: 150px; flex-shrink: 0; } /*[cite: 1] */
+
+      .work-period { margin-left: 0; width: 100%; } /*[cite: 1] */
 
       .nav-links {
-        display: none;
-        position: absolute;
-        top: var(--nav-h);
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        background: rgba(6, 8, 15, 0.97);
-        padding: 1.5rem 2rem;
-        gap: 1.25rem;
-        border-bottom: 1px solid var(--border);
+        display: none; /*[cite: 1] */
+        position: absolute; /*[cite: 1] */
+        top: var(--nav-h); /*[cite: 1] */
+        left: 0; /*[cite: 1] */
+        right: 0; /*[cite: 1] */
+        flex-direction: column; /*[cite: 1] */
+        background: rgba(6, 8, 15, 0.97); /*[cite: 1] */
+        padding: 1.5rem 2rem; /*[cite: 1] */
+        gap: 1.25rem; /*[cite: 1] */
+        border-bottom: 1px solid var(--border); /*[cite: 1] */
       }
       
       [data-theme="light"] .nav-links {
-        background: rgba(244, 247, 246, 0.98);
+        background: rgba(244, 247, 246, 0.98); /*[cite: 1] */
       }
 
-      .nav-links.open { display: flex; }
+      .nav-links.open { display: flex; } /*[cite: 1] */
 
-      .nav-toggle { display: block; }
+      .nav-toggle { display: block; } /*[cite: 1] */
     }
 
     @media (max-width: 600px) {
-      .work-card { grid-template-columns: 1fr; }
-      .work-index { font-size: 1.2rem; }
-      section { padding: 4rem 0; }
+      .work-card { 
+        grid-template-columns: 1fr; /*[cite: 1] */
+        padding: 1.25rem;
+        gap: 1rem;
+      }
+      .work-index { font-size: 1.2rem; } /*[cite: 1] */
+      
+      section { padding: 3rem 0; }
+
+      .hero-name {
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+      }
+
+      .contact-form {
+        padding: 1.25rem;
+      }
     }
   </style>
 </head>
@@ -978,7 +1006,7 @@
             </div>
           </div>
           <div class="hero-image reveal">
-            <img src="shelby-2021.jpg" alt="Erick Marcatoma" />
+            <img src="car3.gif" alt="Erick Marcatoma" />
           </div>
         </div>
       </div>
@@ -1264,7 +1292,7 @@
               to hear from you.
             </p>
             <div class="contact-links">
-              <a href="mailto:your.email@example.com" class="contact-link">
+              <a href="mailto:erick@pursuit.org" class="contact-link">
                 <span class="icon">EMAIL</span>
                 erick@pursuit.org
               </a>
@@ -1322,7 +1350,7 @@
       setTheme(newTheme);
     });
 
-    // Code Citation: Implementation pattern based on self-updating local storage themes[cite: 1]
+    // Code Citation: Implementation pattern based on self-updating local storage themes[cite: 2]
     function setTheme(theme) {
       if (theme === "light") {
         document.body.setAttribute("data-theme", "light");
@@ -1429,47 +1457,51 @@
 
     typeWriter();
 
-    // Mouse Trail Effect
-    const trail = [];
-    const trailLength = 6;
+    // Mouse Trail Effect - Disabled on touchscreen devices to prevent scrolling issues[cite: 1]
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    for (let i = 0; i < trailLength; i++) {
-      const dot = document.createElement("div");
-      dot.style.cssText = `
-        position: fixed;
-        width: ${8 - i * 0.5}px;
-        height: ${8 - i * 0.5}px;
-        border-radius: 50%;
-        background: var(--cyan);
-        pointer-events: none;
-        z-index: 9998;
-        opacity: ${1 - i / trailLength};
-        transition: transform 0.1s ease;
-      `;
-      document.body.appendChild(dot);
-      trail.push({ el: dot, x: 0, y: 0 });
-    }
+    if (!isTouchDevice) {
+      const trail = [];
+      const trailLength = 6;
 
-    let mouseX = 0, mouseY = 0;
+      for (let i = 0; i < trailLength; i++) {
+        const dot = document.createElement("div");
+        dot.style.cssText = `
+          position: fixed;
+          width: ${8 - i * 0.5}px;
+          height: ${8 - i * 0.5}px;
+          border-radius: 50%;
+          background: var(--cyan);
+          pointer-events: none;
+          z-index: 9998;
+          opacity: ${1 - i / trailLength};
+          transition: transform 0.1s ease;
+        `;
+        document.body.appendChild(dot);
+        trail.push({ el: dot, x: 0, y: 0 });
+      }
 
-    document.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
+      let mouseX = 0, mouseY = 0;
 
-    function animateTrail() {
-      let x = mouseX, y = mouseY;
-      trail.forEach((dot, i) => {
-        const prev = trail[i - 1] || { x: mouseX, y: mouseY };
-        dot.x += (prev.x - dot.x) * 0.35;
-        dot.y += (prev.y - dot.y) * 0.35;
-        dot.el.style.left = dot.x - 4 + "px";
-        dot.el.style.top = dot.y - 4 + "px";
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
       });
-      requestAnimationFrame(animateTrail);
-    }
 
-    animateTrail();
+      function animateTrail() {
+        let x = mouseX, y = mouseY;
+        trail.forEach((dot, i) => {
+          const prev = trail[i - 1] || { x: mouseX, y: mouseY };
+          dot.x += (prev.x - dot.x) * 0.35;
+          dot.y += (prev.y - dot.y) * 0.35;
+          dot.el.style.left = dot.x - 4 + "px";
+          dot.el.style.top = dot.y - 4 + "px";
+        });
+        requestAnimationFrame(animateTrail);
+      }
+
+      animateTrail();
+    }
   </script>
 </body>
 </html>
