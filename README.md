@@ -9,7 +9,10 @@ My personal portfolio website showcasing my projects, skills, and journey toward
 - JavaScript
 
 ## Projects
-
+- Riverside Books — HTML, CSS & JavaScript
+- NYC Crash Data 2023 Analysis — Python
+- FreshStock — React & JavaScript
+- NYC Vision Zero Capital Allocation Engine — Python & JavaScript
 - Rock Paper Scissors — JavaScript
 - Account Generator — Python
 
